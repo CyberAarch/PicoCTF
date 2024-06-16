@@ -1,0 +1,23 @@
+We will be using binwalk application for this problem
+    Binwalk is a powerful tool used for analyzing and reverse engineering binary files. It is particularly useful for extracting firmware images,
+    identifying embedded file systems, and locating specific data within a binary file. Binwalk is widely used in the field of firmware analysis,
+     cybersecurity, and reverse engineering
+
+Solution
+Hint 1 -> I searched for "Wait, you can hide files inside files? But how do you find them?" on chatGPT and found out that binwalk could be used for solving this problem
+
+1.) Downloaded the image
+2.) Use exiftool to analyze the image but not enough information
+3.) Used strings dolls.jpg | grep 'picoCtf' but got nothing
+4.) Checked for 'man binwalk' and got info as follows
+    binwalk  - tool for searching binary images for embedded files and exe‐
+       cutable code
+5.) So we need to search for embedded files as our fist hint also indicates
+6.) We can use -e option in our binwalk command to extract any embedded file
+7.) After running binwalk --run-as=root -e dolls.jpg command I got _dolls.jpg.extracted
+8.) After running cd _dolls.jpg.extracted/base_images we have a new image 2_c.jpg
+9.) Now we will do point 7 and 8 till we get something of interest inside 2_c.jpg
+10.) Inside the 4_c.jpg image we get a file called flag.txt
+11.) After runnign cat flag.txt we get our flag
+
+picoCTF{336cf6d51c9d9774fd37196c1d7320ff}
