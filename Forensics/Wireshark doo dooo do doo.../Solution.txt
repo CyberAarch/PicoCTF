@@ -1,0 +1,13 @@
+1.) Open the downloaded .pcapng in wireshark.
+2.) There are about 1000 packets that need to be analyzed.
+3.) Since this proble is of 50 points I think we will not have to deal with the encrypted packets so search for non encrypted packets
+4.) Go to statistics -> conversations -> ipv4 and try to apply filter on the 4 conversations that are present 
+5.) ip.addr==192.168.38.104 && ip.addr==18.222.37.134 filter would be applied 
+6.) follow the stream and you would find Gur synt vf cvpbPGS{c33xno00_1_f33_h_qrnqorrs} this looks like a format of our picoCtf flag
+7.) As I did not know what encryption is it. I asked chatGPT about it, turn out it is ROT13 
+8.) We can use https://rot13.com/ this website to decrypt the flag
+
+Flag: -> picoCTF{p33kab00_1_s33_u_deadbeef}
+
+Solution 2
+We could have used "strings shark1.pcapng" in our terminal command to get -> Gur synt vf cvpbPGS{c33xno00_1_f33_h_qrnqorrs}
