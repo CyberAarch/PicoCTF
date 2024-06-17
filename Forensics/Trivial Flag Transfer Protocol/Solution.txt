@@ -1,0 +1,22 @@
+1.) Download the .pcapng file and open it in wireshark
+2.) Check for conversations that happend during the capture, there are only 2
+3.) Applying 1st one as filter we can see that there is a file instruction.txt, we export them and we get plan, pictures and instruction.txt
+4.) On opening instruction.txt we can see -> GSGCQBRFAGRAPELCGBHEGENSSVPFBJRZHFGQVFTHVFRBHESYNTGENAFSRE.SVTHERBHGNJNLGBUVQRGURSYNTNAQVJVYYPURPXONPXSBEGURCYNA
+5.) The above could be a flag we can apply base64 decode or ROT13 decode, on ROT13 decode we get the text
+    TFTP DOESNT ENCRYPT OUR TRAFFIC SO WE MUST DISGUISE OUR FLAG TRANSFER. FIGURE OUT A WAY TO HIDE THE FLAG AND I WILL CHECK BACK FOR THE PLAN
+6.) So we now check our flag file and get -> VHFRQGURCEBTENZNAQUVQVGJVGU-QHRQVYVTRAPR.PURPXBHGGURCUBGBF
+    I USED THE PROGRAM AND HID IT WITH-DUEDILIGENCE. CHECK OUT THE PHOTOS
+7.) I ran exiftool picture3.bmp on all 3 images picture2 is unoridirarily large with 37 MB maybe we have some embedde file in this image.
+8.) Ran binwalk -e picture2.bmp but nothing got nothing.
+9.) We also have a program.deb in our files that we exported from wireshark
+10.) Ran sudo apt-get install ./program.deb and got info as follows:
+        Note, selecting 'steghide' instead of './program.deb'
+11.) Searched for steghide on chatGPT and got the following info
+        Steghide is a steganography tool that allows you to hide data within various types of image and audio files.
+        The primary purpose of steganography is to conceal the existence of data within other non-suspicious files.
+        Steghide supports a variety of file formats for both the cover files and the embedded data
+12.) Ran command steghide extract -sf photo.jpg -p mypassword -> steghide extract -sf picture3.bmp -p "DUEDILIGENCE" and got the flag.txt file -> cat flag.txt
+
+flag -> picoCTF{h1dd3n_1n_pLa1n_51GHT_18375919}
+
+
