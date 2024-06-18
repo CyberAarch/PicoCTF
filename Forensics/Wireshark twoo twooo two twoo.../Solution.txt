@@ -1,0 +1,21 @@
+1.) Open the downloaded .pcapng in wireshark.
+2.) Run command strings shark2.pcapng | grep "picoCTF"
+3.) You will get multiple picoCTF flags but all of them are decoys.
+4.) To analyze .pcapng file go to statistics -> protocal heirarchy and check which kind of request are present
+5.) Two type of request caught my eyes 
+    GQUIC
+    DNS
+6.) Let's start with analyzing dns packets right click and select apply as filter
+7.) We can see that all the request are trying to acess lDqoR16q.reddshrimpandherring.com -> xxxxxx.reddshrimpandherring.com
+8.) If we scroll down to the bottom we can see that the last req is something like fQ==.reddshrimpandherring.com.windomain.local
+9.) fQ== it is ending with == this means that this is some kind of base64 encoding
+9.) now to extract all of these xxxxx type values we need to use tshark -> terminal for wireshark to get these values
+    tshark -r shark2.pcapng -T fields -e dns.qry.name -Y "dns.qry.name != ''" | grep -oE "^[^.]*" | uniq | base64 -d 
+
+10) After running the above command we do not get the flag but we get indications that the flag is present in there
+11.) After analyzing more of the dns packets we see that 8.8.8.8 is the Google's public DNS (Domain Name System) servers
+    these are probably put there to mask the actual server.
+12.) further analyzing we get an IP -> 18.217.1.57 so we are interested in only these requests and so we update our tshark command as follows
+    tshark -r shark2.pcapng -T fields -e dns.qry.name -Y "dns.qry.name != '' && ip.dst == 18.217.1.57" | grep -oE "^[^.]*" | uniq | base64 -d 
+
+flag -> picoCTF{dns_3xf1l_ftw_deadbeef}
