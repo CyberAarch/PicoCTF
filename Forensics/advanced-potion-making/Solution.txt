@@ -1,0 +1,14 @@
+1.) Download the file using wget https://artifacts.picoctf.net/picoMini+by+redpwn/Forensics/advanced-potion-making/advanced-potion-making
+2.) Run file advanced-potion-making
+    got advanced-potion-making: data -> not much help
+3.) run exiftool advanced-potion-making
+    Didn't got any information from here also
+4.) tried to run steghide extract -sf advanced-potion-making -p "Revelio"
+    Didnt got any information from there too
+5.) tried googling that which type file has a hexcode starting with 89 50, turns out it is a png file 
+6.) So tried fixing the hexcode in hexedit as 89 50 4E 47 and 9.10,11,12 th bytes to 00 00 00 0D
+    Now we have a fixed png file but its just a red color
+7.) maybe some filter is applied so we tried to edit the file in the online editor https://www.online-image-editor.com/
+    on Changing colour to black and white we are able to see the flag
+
+    picoCTF{w1z4rdry}
