@@ -1,0 +1,12 @@
+1.) Download the file with wget https://artifacts.picoctf.net/c/100/drawing.flag.svg
+2.) run file drawing.flag.svg -> got no information
+3.) Run exiftool drawing.flag.svg -> not much info there 
+4.) Run binwalk binwalk --run-as=root -e drawing.flag.svg -> didn't got anything
+5.) Googled what is an svg file
+    An SVG (Scalable Vector Graphics) file is a text-based image format that describes two-dimensional graphics using XML (eXtensible Markup Language).
+    Here are some key points about SVG files:
+    SVG files are composed of XML code, making them editable with text editors. They can be searched, indexed, compressed, and scripted.
+6.) So now we know that an svg file has some xml code associated with it which can be edited
+7.) Ran strings drawing.flag.svg and found the flag in fragments
+
+flag -> picoCTF{3nh4nc3d_aab729dd}
