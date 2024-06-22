@@ -1,0 +1,11 @@
+1.) Download the file using wget https://artifacts.picoctf.net/c/258/flag.png
+2.) On running file flag.png -> We have got a png file to explore
+3.) Ran exiftool flag.png didn't got much information there
+4.) After running binwalk --run-as=root -e flag.png we got an _flag.png.extracted file
+5.) inside _flag.png.extracted we have 29  29.zlib  9B3B.zip  secret these files
+6.) cd into the secret folder we have a flag.png file
+7.) Ran binwalk --run-as=root -e flag.png again and we got _flag.png.extracted again inside which we have a file 86 of unknown format
+8.) Inside the first _flag.png.extracted folder we have a zip that can be extracted -> unzip 9B3B.zip
+9.) On extrating the zip file the flag.png inside the secret file got replaced and this file contains our flag.
+
+flag -> picoCTF{Hiddinng_An_imag3_within_@n_ima9e_d55982e8}
