@@ -1,0 +1,8 @@
+Solution 
+1.) Download the zip using wget https://artifacts.picoctf.net/c_rhea/10/challenge.zip
+2.) unzip challenge.zip and cd home/ctf-player/drop-in
+3.) cat checksum.txt will give you 467a10447deb3d4e17634cacc2a68ba6c2bb62a6637dad9145ea673bf0be5e02
+4.) As per the hint run sha256sum files/* | grep '467a10447deb3d4e17634cacc2a68ba6c2bb62a6637dad9145ea673bf0be5e02'
+5.) After running the above command you will get the file in the files folder that has the same checksum which is -> files/c6c8b911
+6.) Now run ./decrypt.sh files/c6c8b911 and we will get the flag -> picoCTF{trust_but_verify_c6c8b911}
+
